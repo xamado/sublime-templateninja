@@ -1,4 +1,4 @@
-<snippet>
+<template>
     <content><![CDATA[<?php
 
 namespace ${1:VendorName}\\Bundle\\${2:BundleName}Bundle\\Controller;
@@ -15,7 +15,6 @@ class ${3:ControllerName}Controller extends Controller
 
 ?>
 ]]></content>
-    <tabTrigger>sfcontroller</tabTrigger>
-    <scope>source.php</scope>
+    <extensions>php</extensions>
     <description>Symfony2 / Controller / Controller class</description>
-</snippet>
+</template>

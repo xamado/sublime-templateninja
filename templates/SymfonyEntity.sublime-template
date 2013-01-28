@@ -1,4 +1,4 @@
-<snippet>
+<template>
     <content><![CDATA[<?php
 
 namespace ${1:VendorName}\\Bundle\\${2:BundleName}Bundle\\Entity;
@@ -14,6 +14,7 @@ class ${3:EntityName}
 
 ?>
 ]]></content>
-    <scope>source.php</scope>
+    <extensions>php, inc</extensions>
+    <tags>symfony</tags>
     <description>Symfony2 / Doctrine / Entity</description>
-</snippet>
+</template>

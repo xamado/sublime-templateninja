@@ -1,8 +1,8 @@
-<snippet>
+<template>
     <content><![CDATA[<?php
 
 ?>
 ]]></content>
-    <scope>source.php</scope>
+    <extensions>php,inc</extensions>
     <description>PHP Empty File</description>
-</snippet>
+</template>

@@ -1,4 +1,4 @@
-<snippet>
+<template>
     <content><![CDATA[<?php
 
 namespace ${1:VendorName}\\Bundle\\${2:BundleName}Bundle\\Entity;
@@ -11,7 +11,6 @@ class ${3:EntityName}Repository extends EntityRepository
 
 ?>
 ]]></content>
-    <tabTrigger>sfrepository</tabTrigger>
-    <scope>source.php</scope>
+    <extensions>php</extensions>
     <description>Symfony2 / Doctrine / Repository</description>
-</snippet>
+</template>

@@ -1,4 +1,4 @@
-<snippet>
+<template>
     <content><![CDATA[<?php
 
 class ${1:$name} ${2:extends ${3:SomeClass}} {
@@ -10,6 +10,6 @@ class ${1:$name} ${2:extends ${3:SomeClass}} {
 
 ?>
 ]]></content>
-    <scope>source.php</scope>
+    <extensions>php</extensions>
     <description>PHP Class</description>
-</snippet>
+</template>
