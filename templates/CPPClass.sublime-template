@@ -1,0 +1,18 @@
+<template>
+    <content><![CDATA[#include "${2:ClassName}.h"
+
+${2:ClassName}::${2:ClassName}()
+{
+	
+} 
+
+${2:ClassName}::~${2:ClassName}()
+{
+	
+}
+
+${0}
+]]></content>
+    <extensions>cpp</extensions>
+    <description>C++ Class</description>
+</template>

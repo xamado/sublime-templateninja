@@ -40,7 +40,7 @@ class TemplateNinjaNewFileCommand(sublime_plugin.WindowCommand):
 			for d in dirs:
 				relative_path = os.path.join(root, d)[len(project_folder)+1:]
 				if self.excluded != None and not self.excluded.search(relative_path):
-					absolute_path = root + "/" + d
+					absolute_path = os.path.join(root, d)
 					directories.append(absolute_path)
 					options.append([ relative_path, absolute_path ])
 
@@ -61,7 +61,7 @@ class TemplateNinjaNewFileCommand(sublime_plugin.WindowCommand):
 
 	def on_file_name_entered(self, filename):
 		# If the file already exists we need to ask for another name
-		path = self.selected_directory + "/" + filename
+		path = os.path.join(self.selected_directory, filename)
 		if os.path.exists(path):
 			self.output("File already exists")
 			self.show_filename_entry()
@@ -82,10 +82,6 @@ class TemplateNinjaNewFileCommand(sublime_plugin.WindowCommand):
 
 		# Determine scope from file extension (TODO: Find a better way)
 		filename, fileext = os.path.splitext(filename)
-		#scope = self.get_scope_from_extension(fileext)
-		#if scope == None:
-		#	self.output("Couldn't find a template for this file type")
-		#	return
 
 		# Find templates for this file extension
 		templates = self.find_templates_for_scope(fileext)
@@ -98,6 +94,9 @@ class TemplateNinjaNewFileCommand(sublime_plugin.WindowCommand):
 		self.templates = templates
 
 		options = []
+
+		options.append([ "Empty file", "Creates an empty file" ])
+
 		for t in self.templates:
 			description = t.find("description").text
 
@@ -113,21 +112,13 @@ class TemplateNinjaNewFileCommand(sublime_plugin.WindowCommand):
 
 
 	def on_template_selected(self, id):
-		template = self.templates[id]
+		if id == 0:
+			return
+
+		template = self.templates[id-1]
 
 		self.output("Selected " + template.find("description").text)
 		self.insert_template(template.find("content").text)
-
-
-
-	# def get_scope_from_extension(self, extension):
-	# 	formats = self.get_setting("formats")
-	# 	if formats == None:
-	# 		return None
-
-	# 	for format in formats:
-	# 		if "."+format.get('extension') == extension:
-	# 			return format.get('scope')
 
 	def get_template_files(self, search_path):
 		templates = []
@@ -135,7 +126,7 @@ class TemplateNinjaNewFileCommand(sublime_plugin.WindowCommand):
 		for root, dirnames, filenames in os.walk(search_path):
 			for filename in filenames:
 				if filename.endswith(".sublime-template"):
-					templates.append(root + "/" + filename)
+					templates.append(os.path.join(root, filename))
 
 		return templates
 
@@ -154,21 +145,20 @@ class TemplateNinjaNewFileCommand(sublime_plugin.WindowCommand):
 				continue
 
 			# TODO: Can't figure out how to import ParseError
-			#try:
-			template = ElementTree.parse(open(f))
+			try:
+				template = ElementTree.parse(open(f))
 
-			node = template.find("extensions")
-			if node == None:
+				node = template.find("extensions")
+				if node == None:
+					continue
+
+				extensions = node.text.split(',')
+				if extension in extensions:
+					content = template.find("content").text
+					templates.append(template)
+			except:
+				self.output("Failed to parse: " + f)
 				continue
-
-			extensions = node.text.split(',')
-
-			if extension in extensions:
-				content = template.find("content").text
-				templates.append(template)
-			#except:
-			#	self.output("Failed to parse: " + f)
-			#	continue
 
 		return templates
 
@@ -182,7 +172,6 @@ class TemplateNinjaNewFileCommand(sublime_plugin.WindowCommand):
 		else:
 			sublime.set_timeout(lambda: self.insert_template(template), 100)
 
-
 	'''
 	Some helpers
 	'''
@@ -195,16 +184,16 @@ class TemplateNinjaNewFileCommand(sublime_plugin.WindowCommand):
 	def output(self, value):
 		self.debugOutput += value + '\n'
 
-		panel_name = "SuperNewFile"
-		panel = self.window.get_output_panel(panel_name)
+		panel = self.window.get_output_panel(self.plugin_name)
 		panel.set_read_only(False)
 		panel.set_syntax_file('Packages/Text/Plain text.tmLanguage')
 		edit = panel.begin_edit()
 		panel.insert(edit, panel.size(), self.debugOutput)
 		panel.end_edit(edit)
 		panel.set_read_only(True)
-		self.window.run_command("show_panel", {"panel": "output." + panel_name})
+		self.window.run_command("show_panel", {"panel": "output." + self.plugin_name})
 
+	# This method will allow us to override the setting in the project file (thanks to the author)
 	def get_setting(self, key):
 		settings = None
 		view = self.window.active_view()

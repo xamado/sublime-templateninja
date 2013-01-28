@@ -1,0 +1,17 @@
+<template>
+    <content><![CDATA[class ${1:ClassName} ${2:: ${3:BaseClass}}
+{
+    public:
+        ${1:ClassName}();
+        ~${1:ClassName}()
+        
+        ${0}
+        
+    protected:
+
+    private:
+    
+}]]></content>
+    <extensions>hpp</extensions>
+    <description>C++ Class Header</description>
+</template>

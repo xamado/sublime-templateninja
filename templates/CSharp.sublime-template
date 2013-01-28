@@ -1,0 +1,17 @@
+<template>
+    <content><![CDATA[namespace ${1:namespace}
+{
+    class ${2:ClassName} ${3:: ${4:BaseClass}}
+    {
+        public ${2:ClassName}
+        {
+
+        }
+
+        ${0}
+    }
+}
+]]></content>
+    <extensions>cs</extensions>
+    <description>C# Class</description>
+</template>
