@@ -98,9 +98,18 @@ class TemplateNinjaNewFileCommand(sublime_plugin.WindowCommand):
 		options.append([ "Empty file", "Creates an empty file" ])
 
 		for t in self.templates:
-			description = t.find("description").text
+			title = t.find("title")
+			if title != None:
+				title = title.text
+			else:
+				title = ''
+			description = t.find("description")
+			if description != None:
+				description = description.text
+			else:
+				description = ''
 
-			options.append([ description, fileext ])
+			options.append([ title, description, fileext ])
 
 		self.window.show_quick_panel(options, self.on_template_selected, sublime.MONOSPACE_FONT)
 

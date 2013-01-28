@@ -11,5 +11,6 @@ class ${1:name} ${2:extends ${3:SomeClass}} {
 ?>
 ]]></content>
     <extensions>php</extensions>
-    <description>PHP Class</description>
+    <title>PHP Class</title>
+    <description>Creates an empty PHP Class</description>
 </template>

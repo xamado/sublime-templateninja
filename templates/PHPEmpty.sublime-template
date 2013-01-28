@@ -4,5 +4,6 @@
 ?>
 ]]></content>
     <extensions>php,inc</extensions>
-    <description>PHP Empty File</description>
+    <title>PHP Empty File</title>
+    <description>Creates an empty PHP file with just the php tags</description>
 </template>

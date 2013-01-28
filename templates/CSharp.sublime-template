@@ -13,5 +13,6 @@
 }
 ]]></content>
     <extensions>cs</extensions>
-    <description>C# Class</description>
+    <title>C# Class</title>
+    <description>Creates an empty C# class</description>
 </template>

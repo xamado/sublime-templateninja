@@ -14,5 +14,6 @@ ${2:ClassName}::~${2:ClassName}()
 ${0}
 ]]></content>
     <extensions>cpp</extensions>
-    <description>C++ Class</description>
+    <title>C++ Class</title>
+    <description>Create the implemention of an empty class</description>
 </template>
