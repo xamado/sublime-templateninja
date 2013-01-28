@@ -86,7 +86,7 @@ class TemplateNinjaNewFileCommand(sublime_plugin.WindowCommand):
 		# Find templates for this file extension
 		templates = self.find_templates_for_scope(fileext)
 
-		self.output("Found " + str(len(templates)) + " templates")
+		# self.output("Found " + str(len(templates)) + " templates")
 
 		if len(templates) == 0:
 			return
@@ -117,7 +117,7 @@ class TemplateNinjaNewFileCommand(sublime_plugin.WindowCommand):
 
 		template = self.templates[id-1]
 
-		self.output("Selected " + template.find("description").text)
+		# self.output("Selected " + template.find("description").text)
 		self.insert_template(template.find("content").text)
 
 	def get_template_files(self, search_path):
@@ -166,7 +166,6 @@ class TemplateNinjaNewFileCommand(sublime_plugin.WindowCommand):
 		view = self.window.active_view()
 
 		if not view.is_loading():
-			self.output("Inserting snippet")
 			view.run_command("insert_snippet", { 'contents': template })
 			return
 		else:
