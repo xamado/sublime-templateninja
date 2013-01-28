@@ -1,0 +1,20 @@
+{
+	"formats": [
+		{
+			"scope": "config.sublime-template",
+			"extension": "sublime-template"
+		},
+		{
+			"scope": "source.php",
+			"extension": "php"
+		},
+		{
+			"scope": "source.html",
+			"extension": "html"
+		},
+		{
+			"scope": "source.python",
+			"extension": "py"
+		}
+	]
+}

@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[<snippet>
+    <content><![CDATA[${3:Template goes here}
+\]\]></content>
+    <scope>${1:scope}</scope>
+    <description>${2:A short description}</description>
+</snippet>
+]]></content>
+    <scope>config.sublime-template</scope>
+    <description>Sublime Template</description>
+</snippet>

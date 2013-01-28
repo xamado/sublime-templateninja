@@ -1,0 +1,19 @@
+<snippet>
+    <content><![CDATA[<?php
+
+namespace ${1:VendorName}\\Bundle\\${2:BundleName}Bundle\\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ */
+class ${3:EntityName}
+{
+}
+
+?>
+]]></content>
+    <scope>source.php</scope>
+    <description>Symfony2 / Doctrine / Entity</description>
+</snippet>
