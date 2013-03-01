@@ -3,9 +3,12 @@ import sublime_plugin
 import os.path
 import re
 
-from xml.etree import ElementTree # part of python distribution
-from elementtree import SimpleXMLTreeBuilder # part of your codebase
-ElementTree.XMLTreeBuilder = SimpleXMLTreeBuilder.TreeBuilder
+
+from xml.etree import ElementTree
+
+#from xml.etree import ElementTree # part of python distribution
+#from elementtree import SimpleXMLTreeBuilder # part of your codebase
+#ElementTree.XMLTreeBuilder = SimpleXMLTreeBuilder.TreeBuilder
 
 class TemplateNinjaNewFileCommand(sublime_plugin.WindowCommand):
 	plugin_name = 'TemplateNinja'
@@ -24,7 +27,7 @@ class TemplateNinjaNewFileCommand(sublime_plugin.WindowCommand):
 	def show_directory_selection(self):
 		project_folder = self.get_project_folder()
 
-		options = []
+		options = [] 
 		directories = []
 
 		# Create the regex for excluded directories
